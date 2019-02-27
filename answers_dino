@@ -1,0 +1,192 @@
+1. dinosaurs=# select count(name) from dinos;
+ count
+-------
+   331
+(1 row)
+
+2. dinosaurs=# select name from dinos where period = 'Jurassic';
+        name
+---------------------
+ Yuanmousaurus
+ Yinlong
+ Yingshanosaurus
+ Yimenosaurus
+ Yangchuanosaurus
+ Yandusaurus
+ Vulcanodon
+ Tuojiangosaurus
+ Torvosaurus
+ Yunnanosaurus
+ Sinraptor
+ Stegosaurus
+ Seismosaurus
+ Segisaurus
+ Scutellosaurus
+ Scelidosaurus
+ Saurophaganax
+ Sarcosaurus
+ Shunosaurus
+ Rhoetosaurus
+ Poekilopleuron
+ Podokesaurus
+ Piatnitzkysaurus
+ Proceratosaurus
+ Patagosaurus
+ Pantydraco
+ Datousaurus
+ Ornitholestes
+ Omeisaurus
+ Nqwebasaurus
+ Monolophosaurus
+ Othnielia
+ Megalosaurus
+ Massospondylus
+ Marshosaurus
+ Mamenchisaurus
+ Lufengosaurus
+ Lophostropheus
+ Lexovisaurus
+ Metriacanthosaurus
+ Lesothosaurus
+ Kentrosaurus
+ Juravenator
+ Jingshanosaurus
+ Janenschia
+ Huayangosaurus
+ Heterodontosaurus
+ Kotasaurus
+ Guanlong
+ Giraffatitan
+ Gasosaurus
+ Gargoyleosaurus
+ Eustreptospondylus
+ Europasaurus
+ Haplocanthosaurus
+ Emausaurus
+
+ 3. dinosaurs=# select sum(length) from dinos where period = 'Cretaceous'
+dinosaurs-# ;
+   sum
+---------
+ 1366.45
+(1 row)
+
+4.dinosaurs=# select name, species from dinos where period='Jurassic' or period='Cretaceous' order by species;
+          name           |     species
+-------------------------+------------------
+ Afrovenator             | Abakensis
+ Spinosaurus             | Aegyptiacus
+ Kentrosaurus            | Aethiopicus
+ Deltadromeus            | Agilis
+ Lophostropheus          | Airelensis
+ Apatosaurus             | Ajax
+ Dromaeosaurus           | Albertensis
+ Styracosaurus           | Albertensis
+ Becklespinax            | Altispinax
+ Hypacrosaurus           | Altispinus
+ Brachiosaurus           | Altithorax
+ Struthiomimus           | Altus
+ Dryosaurus              | Altus
+ Leaellynasaura          | Amicagraphica
+ Erlikosaurus            | Andrewsi
+ Protoceratops           | Andrewsi
+ Deinonychus             | Antirrhopus
+ Centrosaurus            | Apertus
+ Dryptosaurus            | Aquilunguis
+ Jaxartosaurus           | Aralensis
+ Lurdusaurus             | Arenatus
+ Hylaeosaurus            | Armatus
+ Stegosaurus             | Armatus
+ Dacentrurus             | Armatus
+ Shanag                  | Ashile
+ Archaeornithomimus      | Asiaticus
+ Ampelosaurus            | Atacis
+ Acrocanthosaurus        | Atokensis
+ Majungatholus           | Atopus
+ Lophorhothon            | Atopus
+ Neuquenosaurus          | Australis
+ Struthiosaurus          | Austriacus
+ Aegyptosaurus           | Baharijensis
+ Elaphrosaurus           | Bambergi
+ Datousaurus             | Bashanensis
+ Tarbosaurus             | Bataar
+ Chasmosaurus            | Belli
+ Iguanodon               | Bernissartensis
+ Marshosaurus            | Bicentesimus
+ Cedarpelta              | Bilbeyhallorum
+ Dravidosaurus           | Blanfordi
+ Arrhinoceratops         | Brachyops
+ Proceratosaurus         | Bradleyi
+ Giraffatitan            | Brancai
+ Garudimimus             | Brevipes
+ Nanshiungosaurus        | Brevispinus
+:...skipping...
+
+5. dinosaurs=# select name from dinos where t_order='Saurischia' and diet='Herbivorous';
+        name
+---------------------
+ Yuanmousaurus
+ Yimenosaurus
+ Vulcanodon
+ Supersaurus
+ Sonidosaurus
+ Seismosaurus
+ Saltasaurus
+ Rebbachisaurus
+ Quaesitosaurus
+ Shunosaurus
+ Rhoetosaurus
+ Plateosaurus
+ Pelorosaurus
+ Patagosaurus
+ Pantydraco
+ Paralititan
+ Datousaurus
+ Pleurocoelus
+ Opisthocoelicaudia
+ Omeisaurus
+ Nigersaurus
+ Neuquenosaurus
+ Nemegtosaurus
+ Mussaurus
+ Maxakalisaurus
+ Malawisaurus
+ Mamenchisaurus
+ Lufengosaurus
+ Magyarosaurus
+ Ligabuesaurus
+ Jobaria
+ Jingshanosaurus
+ Janenschia
+ Isisaurus
+ Hypselosaurus
+ Kotasaurus
+ Guaibasaurus
+ Giraffatitan
+ Europasaurus
+ Haplocanthosaurus
+ Erketu
+ Euhelopus
+ Diplodocus
+ Dicraeosaurus
+ Chubutisaurus
+ Chinshakiangosaurus
+dinosaurs=# select count(name) from dinos where t_order='Saurischia' and diet='Herbivorous';
+ count
+-------
+    68
+(1 row)
+
+6. dinosaurs=# update dinos set name ='Shortie' where name=(select name from dinos where length = (select min(length) from dinos));
+UPDATE 1
+dinosaurs=# select name from dinos where length = (select min(length) from dinos);
+  name
+---------
+ Shortie
+(1 row)
+
+7.dinosaurs=# select name from dinos order by name LIMIT 1;
+   name
+----------
+ Aardonyx
+(1 row)
